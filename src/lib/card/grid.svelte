@@ -1,10 +1,11 @@
 <script lang="ts">
-	import Grid from 'svelte-grid-extended';
 	import type { CardTypes } from './types';
+	import Grid from 'svelte-grid-extended';
 	import SimpleCard from './simple.svelte';
+	import { createCard } from './helper';
 
 	interface Props {
-		items: CardTypes.Simple[];
+		items: CardTypes.Item[];
 		itemSize: { height: number };
 	}
 
@@ -18,9 +19,24 @@
 	function resetItems(): void {
 		i = structuredClone(itemsBackup);
 	}
+
+	function addItem(type: string): void {
+		let uuid = self.crypto.randomUUID();
+		console.log(uuid);
+		let card = createCard(type);
+		if (typeof card === 'string') {
+			window.alert(card);
+			return;
+		}
+		card.id = uuid;
+		i = [...i, card];
+	}
 </script>
 
 <button class="m-2 rounded-md border border-teal-400 px-4 py-2" onclick={resetItems}>Reset</button>
+<button class="m-2 rounded-md border border-teal-400 px-4 py-2" onclick={() => addItem('simple')}
+	>Add Item</button
+>
 <Grid {itemSize} collision="push" cols={10} class="min-h-screen">
 	{#each i as item (item.id)}
 		{#if item.type === 'simple'}

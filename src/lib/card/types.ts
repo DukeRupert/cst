@@ -9,8 +9,8 @@ export namespace CardTypes {
   }
 
   export interface Base extends Grid {
-    id: number
-    type: 'simple',
+    id: string
+    type: 'simple'
   }
 
   export interface Simple extends Base {
@@ -21,7 +21,7 @@ export namespace CardTypes {
     }
   }
 
-  export type Item = Base | Simple
+  export type Item = Simple
 }
 
 export type Item = CardTypes.Item

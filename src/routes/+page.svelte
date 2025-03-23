@@ -5,7 +5,7 @@
 	const itemSize = { height: 40 };
 
 	let card: CardTypes.Simple = {
-		id: 0,
+		id: 'test',
 		type: 'simple',
 		x: 0,
 		y: 0,
