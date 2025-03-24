@@ -10,19 +10,33 @@ export namespace CardTypes {
 
   export interface Base extends Grid {
     id: string
-    type: 'simple'
+    type: string
   }
 
   export interface Simple extends Base {
+    type: 'simple'
     data: {
-      name: string
+      title: string
       content: string
       size: TextSize
     }
   }
 
-  export type Item = Simple
+  export interface Ancestry extends Base {
+    type: 'ancestry'
+    data: {
+      title: string
+      name: string
+      description: string
+      lifespan: string
+      age: string
+      size: string
+    }
+  }
+
+  export type Item = Simple | Ancestry
 }
 
 export type Item = CardTypes.Item
 export type Simple = CardTypes.Simple
+export type Ancestry = CardTypes.Ancestry

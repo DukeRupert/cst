@@ -4,20 +4,36 @@
 
 	const itemSize = { height: 40 };
 
-	let card: CardTypes.Simple = {
-		id: 'test',
+	let simpleCard: CardTypes.Simple = {
+		id: 'simple',
 		type: 'simple',
 		x: 0,
 		y: 0,
 		h: 2,
-		w: 3,
+		w: 7,
 		data: {
-			name: 'Name',
+			title: 'Name',
 			content: 'Character Name',
 			size: 'xl'
 		}
 	};
-	let items = [card];
+	let ancestryCard: CardTypes.Ancestry = {
+		id: 'ancestry',
+		type: 'ancestry',
+		x: 0,
+		y: 2,
+		h: 6,
+		w: 7,
+		data: {
+			title: 'Ancestry',
+			name: 'Ancestry Name',
+			description: '',
+			lifespan: '',
+			age: '',
+			size: ''
+		}
+	};
+	let items = [simpleCard, ancestryCard];
 </script>
 
 <Grid {items} {itemSize} />

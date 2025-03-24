@@ -55,9 +55,9 @@
 	>
 		<div class="absolute top-0 left-0 min-w-12 bg-black p-2 text-center text-sm text-white">
 			{#if edit}
-				<input id="simple-name" bind:value={data.name} onkeydown={handleEnter} />
+				<input id="simple-name" bind:value={data.title} onkeydown={handleEnter} />
 			{:else}
-				<h3>{data.name}</h3>
+				<h3>{data.title}</h3>
 			{/if}
 		</div>
 		<div

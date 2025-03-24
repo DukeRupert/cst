@@ -2,6 +2,7 @@
 	import type { CardTypes } from './types';
 	import Grid from 'svelte-grid-extended';
 	import SimpleCard from './simple.svelte';
+	import AncestryCard from './ancestry.svelte';
 	import { createCard } from './helper';
 
 	interface Props {
@@ -41,6 +42,16 @@
 	{#each i as item (item.id)}
 		{#if item.type === 'simple'}
 			<SimpleCard
+				type={item.type}
+				bind:x={item.x}
+				bind:y={item.y}
+				bind:h={item.h}
+				bind:w={item.w}
+				bind:data={item.data}
+				id={item.id}
+			/>
+		{:else if item.type === 'ancestry'}
+			<AncestryCard
 				type={item.type}
 				bind:x={item.x}
 				bind:y={item.y}
