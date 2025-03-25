@@ -2,6 +2,7 @@
 	import { GridItem } from 'svelte-grid-extended';
 	import type { Simple } from './types';
 	let {
+		id,
 		x = $bindable(),
 		y = $bindable(),
 		w = $bindable(),
@@ -39,40 +40,45 @@
 	}
 </script>
 
-<GridItem bind:x bind:y bind:w bind:h>
-	<div
-		id="card"
-		role="button"
-		tabindex="0"
-		aria-label="Card content. Double-click to edit."
-		aria-roledescription="Editable card"
-		aria-haspopup="dialog"
-		class="relative h-full w-full border-t-1 border-r-2 border-b-4 border-l-1 {edit
-			? 'border-dotted'
-			: 'border-solid'} bg-white"
-		ondblclick={handleDoubleClick}
-		ontouchend={handleDoubleTap}
-	>
-		<div class="absolute top-0 left-0 min-w-12 bg-black p-2 text-center text-sm text-white">
-			{#if edit}
-				<input id="simple-name" bind:value={data.title} onkeydown={handleEnter} />
-			{:else}
-				<h3>{data.title}</h3>
-			{/if}
-		</div>
+
+	<GridItem bind:x bind:y bind:w bind:h>
 		<div
-			class="grid h-full w-full grid-cols-1 grid-rows-1 items-center justify-items-center text-2xl"
+			id="card"
+			role="button"
+			tabindex="0"
+			aria-label="Card content. Double-click to edit."
+			aria-roledescription="Editable card"
+			aria-haspopup="dialog"
+			ondblclick={handleDoubleClick} ontouchend={handleDoubleTap}
+			class="relative h-full w-full border-t-1 border-r-2 border-b-4 border-l-1 {edit
+				? 'border-dotted'
+				: 'border-solid'} bg-white"
 		>
-			{#if edit}
-				<input
-					id="simple-content"
-					class="box-border w-full"
-					bind:value={data.content}
-					onkeydown={handleEnter}
-				/>
-			{:else}
-				<p>{data.content}</p>
-			{/if}
+			<div class="flex h-full flex-col">
+				<!-- Box 1 (Small) -->
+				<div class="flex justify-between text-end">
+					<div class="bg-black p-2 text-sm text-white">
+						{#if edit}
+							<input id="ancestry-title" bind:value={data.title} onkeydown={handleEnter} />
+						{:else}
+							<h3>{data.title}</h3>
+						{/if}
+					</div>
+				</div>
+
+				<!-- Box 2 (Flexible - takes remaining space) -->
+				<div class="flex-grow flex flex-col justify-center items-center overflow-hidden p-4 text-2xl">
+					{#if edit}
+						<input
+							id="simple-content"
+							class="box-border w-full"
+							bind:value={data.content}
+							onkeydown={handleEnter}
+						/>
+					{:else}
+						<p>{data.content}</p>
+					{/if}
+				</div>
+			</div>
 		</div>
-	</div>
-</GridItem>
+	</GridItem>

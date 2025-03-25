@@ -15,12 +15,15 @@
 	const itemsBackup = structuredClone(items);
 
 	let i = $state(items);
-	$inspect(i);
 
 	function resetItems(): void {
 		i = structuredClone(itemsBackup);
 	}
 
+	function is_wide(x: number): boolean {
+		return x > 4
+	}
+	
 	function addItem(type: string): void {
 		let uuid = self.crypto.randomUUID();
 		console.log(uuid);
