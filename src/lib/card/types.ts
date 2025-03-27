@@ -34,9 +34,21 @@ export namespace CardTypes {
     }
   }
 
+  export interface Characteristics extends Base {
+    type: 'characteristics'
+    data: {
+      might: number
+      agility: number
+      reason: number
+      intuition: number
+      presence: number
+    }
+  }
+
   export type Item = Simple | Ancestry
 }
 
 export type Item = CardTypes.Item
 export type Simple = CardTypes.Simple
 export type Ancestry = CardTypes.Ancestry
+export type Characteristics = CardTypes.Characteristics
